@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>URL Shortener</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 100px;
+            background: #f4f4f4;
+        }
+
+        input {
+            padding: 10px;
+            width: 300px;
+            margin: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🔗 URL Shortener</h1>
+
+<form method="POST">
+    <input type="text" name="url" placeholder="Enter long URL" required><br>
+    <input type="text" name="custom_code" placeholder="Custom short code (optional)"><br>
+    <button type="submit">Shorten</button>
+</form>
+
+{% if error %}
+<p class="error">{{ error }}</p>
+{% endif %}
+
+{% if short_url %}
+<div class="result">
+    <p><b>Short URL:</b> <a href="{{ short_url }}">{{ short_url }}</a></p>
+    <p><a href="/stats/{{ short_url.split('/')[-1] }}">📊 View Analytics</a></p>
+</div>
+{% endif %}
+
+</body>
+</html>
